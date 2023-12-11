@@ -5,7 +5,7 @@ from mock_data import contacts
 app = Flask(__name__)
 
 # App routes
-@app.route("/contacts", methods=['GET'])
+@app.route("/data", methods=['GET'])
 def get_contacts():
     return jsonify({"contacts": contacts})
 

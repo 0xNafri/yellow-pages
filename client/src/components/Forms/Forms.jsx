@@ -7,6 +7,7 @@ function Forms() {
   return (
     <div>
       <Form>
+        <p>Contact</p>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Text className="text-muted">
             Enter the necessary details of the contact
@@ -17,7 +18,7 @@ function Forms() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <FloatingLabel controlId="floatingname" label="Phone Number" className='"mb-3'>
+          <FloatingLabel controlId="floatingnumber" label="Phone Number" className='"mb-3'>
             <Form.Control type="password" placeholder="ex:0123456789" />
           </FloatingLabel>
         </Form.Group>
