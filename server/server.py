@@ -25,8 +25,8 @@ def add_contact():
     db.session.commit()
     return jsonify({'message': 'Contact added successfully'})
 
-@app.route('/get_contacts', methods=['GET'])
-def get_contacts():
+@app.route('/view_contacts', methods=['GET'])
+def view_contacts():
     contacts = Contact.query.all()
     contacts_data = [{'id': contact.id, 'name': contact.name, 'phone_number': contact.phone_number} for contact in contacts]
     return jsonify({'contacts': contacts_data})
