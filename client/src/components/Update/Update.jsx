@@ -3,12 +3,24 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
+import { useParams } from "react-router-dom";
 import "./update.css";
 
 function Update() {
+  const { id } = useParams();
   const [formData, setFormData] = useState({ name: "", number: "" });
   const [showAlert, setShowAlert] = useState(false);
-  const [id, setID] = useState(null);
+
+  useEffect(() => {
+    // Fetch the existing contact details and update the state
+    axios.get(`/view_contacts/${id}`).then((res) => {
+      const contactDetails = res.data;
+      setFormData({
+        name: contactDetails.name,
+        number: contactDetails.phone_number,
+      });
+    });
+  }, [id]);
 
   const handleChange = (event) => {
     setFormData((prevFormData) => ({
@@ -21,14 +33,14 @@ function Update() {
     event.preventDefault();
     try {
       axios
-        .post("/add_contact", formData)
+        .put(`/update_contact/${id}`, formData)
         .then((res) => {
           console.log(res);
           setShowAlert((prevAlert) => !prevAlert);
         })
         .catch((err) => {
           console.error(err);
-        }); 
+        });
     } catch (err) {
       console.error(err);
     }
@@ -38,14 +50,12 @@ function Update() {
     }, 3000);
   };
 
-
-
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <p>Add Contact</p>
+        <p>Edit Contact</p>
         <Form.Text className="text-muted">
-          Enter the necessary details of the contact
+          Update the necessary details of the contact
         </Form.Text>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
@@ -54,7 +64,7 @@ function Update() {
             placeholder="John Doe"
             onChange={handleChange}
             name="name"
-            value={formData}
+            value={formData.name}
           />
         </Form.Group>
 
@@ -65,7 +75,7 @@ function Update() {
             placeholder="0123456789"
             onChange={handleChange}
             name="number"
-            value={formData}
+            value={formData.number}
           />
         </Form.Group>
         <Button variant="primary" type="submit">
@@ -80,7 +90,7 @@ function Update() {
           dismissible
           className="mt-3 alert-custom"
         >
-          Contact added successfully!
+          Contact updated successfully!
         </Alert>
       )}
     </div>

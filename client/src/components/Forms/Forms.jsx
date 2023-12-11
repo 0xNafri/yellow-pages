@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import Alert from 'react-bootstrap/Alert';
-import "./form.css"
+import './form.css';
 
 function Forms() {
   const [formData, setFormData] = useState({ name: '', number: '' });
-  const [showAlert, setShowAlert] = useState(false)
-
-  console.log(formData)
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setFormData((prevFormData) => ({
@@ -18,19 +18,16 @@ function Forms() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      axios.post('/add_contact', formData)
-        .then(res => {
-          console.log(res)
-          setShowAlert(prevAlert => !prevAlert)
-        })
-        .catch(err => {
-          console.error(err)
-        })
+      const res = await axios.post('/add_contact', formData);
+      console.log(res);
+      setShowAlert(true);
+      // Navigate to ContactsList after adding the contact
+      navigate('/view-contacts');
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
     setFormData({ name: '', number: '' });
     setTimeout(() => {
@@ -70,7 +67,7 @@ function Forms() {
       </Form>
 
       {showAlert && (
-        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className='mt-3 alert-custom'>
+        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible className="mt-3 alert-custom">
           Contact added successfully!
         </Alert>
       )}

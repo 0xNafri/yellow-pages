@@ -21,8 +21,16 @@ class Contact(db.Model):
 def view_contacts():
     contacts = Contact.query.all()
     contacts_data = [{'id': contact.id, 'name': contact.name, 'phone_number': contact.phone_number} for contact in contacts]
-    print(contacts)
     return jsonify({'contacts': contacts_data})
+
+@app.route('/view_contacts/<int:contact_id>', methods=['GET'])
+def view_contact(contact_id):
+    contact = Contact.query.get(contact_id)
+    if contact:
+        contact_data = {'id': contact.id, 'name': contact.name, 'phone_number': contact.phone_number}
+        return jsonify(contact_data)
+    else:
+        return jsonify({'message': 'Contact not found'})
 
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
@@ -31,6 +39,18 @@ def add_contact():
     db.session.add(new_contact)
     db.session.commit()
     return jsonify({'message': 'Contact added successfully'})
+
+@app.route('/update_contact/<int:contact_id>', methods=['PUT'])
+def update_contact(contact_id):
+    contact = Contact.query.get(contact_id)
+    if contact:
+        data = request.get_json()
+        contact.name = data['name']
+        contact.phone_number = data['number']
+        db.session.commit()
+        return jsonify({'message': 'Contact updated successfully'})
+    else:
+        return jsonify({'message': 'Contact not found'})
 
 @app.route('/delete_contact/<int:contact_id>', methods=['DELETE'])
 def delete_contact(contact_id):

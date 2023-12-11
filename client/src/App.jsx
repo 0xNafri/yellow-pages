@@ -21,7 +21,7 @@ function App() {
       .catch(err => {
         console.error(err)
       })
-  }, [])
+  }, [contacts])
 
 
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route path="/" element={<ContactsList contacts={contacts}/>} />
           <Route path="/view-contacts" element={<ContactsList contacts={contacts}/>} />
           <Route path="/add-contact" element={<ManageContact/>}/>
-          <Route path="/edit-contact" element={<UpdateContact/>}/>
+          <Route path="/edit-contact/:id" element={<UpdateContact/>}/>
 
         </Routes>
       </BrowserRouter>
