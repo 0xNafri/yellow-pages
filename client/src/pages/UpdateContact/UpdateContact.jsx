@@ -1,16 +1,16 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
-import Forms from '../../components/Forms/Forms'
+import Update from '../../components/Update/Update'
 
-function ManageContact() {
+function UpdateContact({contacts}) {
     return (
         <div>
             <Header />
             <div className='container'>
-                <Forms/>
+                <Update/>
             </div>
         </div>
     )
 }
 
-export default ManageContact
+export default UpdateContact

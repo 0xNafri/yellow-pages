@@ -15,8 +15,8 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto" id='nav-link'>
               {/* TODO: add page routing */}
-              <Nav.Link href="/contact-list">Contacts List</Nav.Link>
-              <Nav.Link href="/manage-contact">Add Contact</Nav.Link>
+              <Nav.Link href="/view-contacts">View Contacts</Nav.Link>
+              <Nav.Link href="/add-contact">Add Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

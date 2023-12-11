@@ -3,22 +3,21 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import "./contacts.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-function Contacts({ contacts }) {
+function Contacts({  }) {
   const handleEdit = () => {
+    
+  };
 
-  }
-
-  
   const handleDelete = (contactId) => {
-    axios.delete(`/delete_contact/${contactId}`)
-      .then(res => {
-        
-      })
-      .catch(err => {
-        console.error(err)
-      })
-  }
+    axios
+      .delete(`/delete_contact/${contactId}`)
+      .then((res) => {})
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <div>
@@ -39,8 +38,22 @@ function Contacts({ contacts }) {
               <td>{contact.name}</td>
               <td>{contact.phone_number}</td>
               <td>
-                <Button variant="primary" className="me-2" onClick={() => handleDelete(contact.id)}>Edit</Button>
-                <Button variant="danger" className="me-2" onClick={() => handleDelete(contact.id)}>Delete</Button>
+                <Link to="/edit-contact">
+                  <Button
+                    variant="primary"
+                    className="me-2"
+                    onClick={() => handleEdit()}
+                  >
+                    Edit
+                  </Button>
+                </Link>
+                <Button
+                  variant="danger"
+                  className="me-2"
+                  onClick={() => handleDelete(contact.id)}
+                >
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

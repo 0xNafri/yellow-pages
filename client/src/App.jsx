@@ -5,6 +5,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ContactsList from './pages/ContactsList/ContactsList'
 import ManageContact from './pages/ManageContact/ManageContact'
+import UpdateContact from './pages/UpdateContact/UpdateContact'
 
 
 function App() {
@@ -28,10 +29,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ContactsList contacts={contacts}/>} />
-          <Route path="/contact-list" element={<ContactsList contacts={contacts}/>} />
-          <Route path="/manage-contact" element={
-          <ManageContact/>} 
-          />
+          <Route path="/view-contacts" element={<ContactsList contacts={contacts}/>} />
+          <Route path="/add-contact" element={<ManageContact/>}/>
+          <Route path="/edit-contact" element={<UpdateContact/>}/>
 
         </Routes>
       </BrowserRouter>
