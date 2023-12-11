@@ -1,4 +1,9 @@
 p {
-    font-weight: bold;
-    text-align: start;
+    font-weight: light;
+    text-align: center;
 }
+
+.alert-custom {
+    font-size: 15px;
+    
+  }
