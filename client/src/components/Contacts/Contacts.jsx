@@ -6,12 +6,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Contacts({ contacts }) {
-  const handleEdit = () => {};
+  const handleEdit = () => { };
 
   const handleDelete = (contactId) => {
     axios
       .delete(`/delete_contact/${contactId}`)
-      .then((res) => {})
+      .then((res) => { })
       .catch((err) => {
         console.error(err);
       });
@@ -66,6 +66,11 @@ function Contacts({ contacts }) {
           </tbody>
         </Table>
       )}
+
+      <Link to="/add-contact">
+        <Button variant="primary">Add Contact</Button>
+      </Link>
+
     </div>
   );
 }

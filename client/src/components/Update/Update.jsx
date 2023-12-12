@@ -3,13 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./update.css";
 
 function Update() {
   const { id } = useParams();
   const [formData, setFormData] = useState({ name: "", number: "" });
   const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Fetch the existing contact details and update the state
@@ -37,6 +38,7 @@ function Update() {
         .then((res) => {
           console.log(res);
           setShowAlert((prevAlert) => !prevAlert);
+          navigate('/view-contacts')
         })
         .catch((err) => {
           console.error(err);
