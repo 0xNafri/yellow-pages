@@ -8,7 +8,7 @@ import './header.css'
 function Header() {
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="bg-body-primary" bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="/" id='nav-brand'>Yellow Pages</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

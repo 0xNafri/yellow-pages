@@ -64,14 +64,16 @@ function Contacts({ contacts }) {
               </tr>
             ))}
           </tbody>
+
+          
+          <Link to="/add-contact" className="mt-3 mx-auto d-block">
+            <Button variant="primary">Add Contact</Button>
+          </Link>
         </Table>
       )}
 
-      <Link to="/add-contact">
-        <Button variant="primary">Add Contact</Button>
-      </Link>
-
     </div>
+
   );
 }
 
